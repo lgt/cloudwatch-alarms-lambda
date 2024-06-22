@@ -1,0 +1,22 @@
+services:
+  lambda:
+    image: 726890198016.dkr.ecr.eu-central-1.amazonaws.com/test-lambda:${VERSION:-develop}
+    build:
+      context: ./
+      args:
+        BUILD_MODE: 'development'
+      dockerfile: Dockerfile
+    restart: on-failure
+    stop_grace_period: 30s
+    ports:
+      - 9000:8080
+      - 9231:9229  # Add a port for Node.js debugging
+    entrypoint: ['/aws-lambda/aws-lambda-rie']
+    command: ['/usr/local/bin/npx', 'aws-lambda-ric', 'node', '--inspect-brk=0.0.0.0:9229', 'build/lambda.handler']  # Enable Node.js debugging
+    env_file:
+      - .env
+    # only needed on linux
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    networks:
+      - default

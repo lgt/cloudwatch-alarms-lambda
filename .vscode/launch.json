@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "address": "0.0.0.0",
+      "localRoot": "${workspaceFolder}",
+      "name": "Attach to Lambda's Node Debugger Process",
+      "port": 9231,
+      "remoteRoot": "/opt/app",
+      "request": "attach",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node",
+      "continueOnAttach": true
+    }
+  ]
+}

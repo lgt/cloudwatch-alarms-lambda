@@ -1,0 +1,8 @@
+.idea/
+.vscode/*
+!.vscode/launch.json
+build/
+node_modules/
+.env
+logs/
+docker-compose.override.yml
